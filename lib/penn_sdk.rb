@@ -20,4 +20,24 @@ module PennSDK
       self.class.get(endpoint, query: query, headers: @headers)
     end
   end
+
+  class Registrar < Base
+    ENDPOINTS = {
+      :catalog       => 'course_info',
+      :search        => 'course_section_search',
+      :search_params => 'course_section_search_parameters'
+    }
+
+    def course(dept, course_number)
+      api("/#{ENDPOINTS[:catalog]}/#{dept}/#{course_number}")
+    end
+
+    def section(dept, course_number, section_number)
+      api(ENDPOINTS[:search], {"course_id" => dept + course_number + section_number})
+    end
+
+    def searchParams
+      api(ENDPOINTS[:search_params])
+    end
+  end
 end
