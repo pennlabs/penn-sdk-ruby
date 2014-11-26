@@ -10,7 +10,7 @@ Gem::Specification.new do |spec|
   spec.email         = ["aqalieh95@gmail.com"]
   spec.summary       = %q{A Ruby wrapper for the Penn OpenData APIs.}
   spec.description   = %q{A Ruby wrapper for the Penn OpenData APIs. APIs supported will include registrar, directory, dining, transit, maps, events, and news.}
-  spec.homepage      = ""
+  spec.homepage      = "http://pennlabs.org/"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files -z`.split("\x0")
