@@ -20,11 +20,16 @@ Or install it yourself as:
 
 ## Usage
 
-Nothing is in here yet!
+```ruby
+require 'penn_sdk'
+
+registrar = PennSDK::Registrar.new "API_USERNAME", "API_PASSWORD"
+registrar.course "CHEM", "242"
+```
 
 ## Contributing
 
-1. Fork it ( https://github.com/pennappslabs/penn-sdk-ruby/fork )
+1. Fork it ( https://github.com/pennlabs/penn-sdk-ruby/fork )
 2. Create your feature branch (`git checkout -b my-new-feature`)
 3. Commit your changes (`git commit -am 'Add some feature'`)
 4. Push to the branch (`git push origin my-new-feature`)
