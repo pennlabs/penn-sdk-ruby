@@ -4,7 +4,7 @@ require "httparty"
 module PennSDK
   class Base
     include HTTParty
-    base_uri 'https://esb.isc-seo.upenn.edu/8091/open_data'
+    base_uri 'https://esb.isc-seo.upenn.edu/8091/open_data/'
 
     def initialize(username, password)
       @username = username
@@ -29,7 +29,7 @@ module PennSDK
     }
 
     def course(dept, course_number)
-      api("/#{ENDPOINTS[:catalog]}/#{dept}/#{course_number}")
+      api("#{ENDPOINTS[:catalog]}/#{dept}/#{course_number}")
     end
 
     def section(dept, course_number, section_number)
@@ -38,6 +38,21 @@ module PennSDK
 
     def searchParams
       api(ENDPOINTS[:search_params])
+    end
+  end
+
+  class Directory < Base
+    ENDPOINTS = {
+      :search  => 'directory',
+      :details => 'directory_person_details'
+    }
+
+    def search(params)
+      api(ENDPOINTS[:search], params)
+    end
+
+    def details(person)
+      api("#{ENDPOINTS[:details]}/#{person}")
     end
   end
 end
