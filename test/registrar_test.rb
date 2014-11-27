@@ -1,10 +1,10 @@
 require "minitest/autorun"
 require "penn_sdk"
 
-API_USERNAME = ENV["REGISTRAR_API_USERNAME"]
-API_PASSWORD = ENV["REGISTRAR_API_PASSWORD"]
-
 class RegistrarTest < Minitest::Test
+  API_USERNAME = ENV["REGISTRAR_API_USERNAME"]
+  API_PASSWORD = ENV["REGISTRAR_API_PASSWORD"]
+
   def setup
     @registrar = PennSDK::Registrar.new API_USERNAME, API_PASSWORD
   end
