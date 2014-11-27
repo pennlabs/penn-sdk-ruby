@@ -7,6 +7,9 @@ module PennSDK
     base_uri 'https://esb.isc-seo.upenn.edu/8091/open_data/'
 
     def initialize(username, password)
+      if not username or not password
+        raise "Username and password required"
+      end
       @username = username
       @password = password
       @headers = {
@@ -23,9 +26,9 @@ module PennSDK
 
   class Registrar < Base
     ENDPOINTS = {
-      :catalog       => 'course_info',
-      :search        => 'course_section_search',
-      :search_params => 'course_section_search_parameters'
+      :catalog       => '/course_info',
+      :search        => '/course_section_search',
+      :search_params => '/course_section_search_parameters'
     }
 
     def course(dept, course_number)
@@ -43,8 +46,8 @@ module PennSDK
 
   class Directory < Base
     ENDPOINTS = {
-      :search  => 'directory',
-      :details => 'directory_person_details'
+      :search  => '/directory',
+      :details => '/directory_person_details'
     }
 
     def search(params)
