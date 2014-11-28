@@ -51,11 +51,11 @@ module PennSDK
     }
 
     def search(params)
-      api(ENDPOINTS[:search], params)
+      api(ENDPOINTS[:search], params)["result_data"]
     end
 
     def details(person)
-      api("#{ENDPOINTS[:details]}/#{person}")
+      api("#{ENDPOINTS[:details]}/#{person}")["result_data"][0]
     end
   end
 end

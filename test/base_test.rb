@@ -31,6 +31,13 @@ class TestBase < Minitest::Test
     assert_equal "REC", result["result_data"][0]["requirements"][0]["value"]
   end
 
+  def test_can_search_for_acct_101_using_params
+    result = @base.api "/course_section_search", {"course_id" => "ACCT101"}
+    assert_equal "101", result["result_data"][0]["course_number"]
+    assert_equal "ACCT", result["result_data"][0]["course_department"]
+    assert_equal "REC", result["result_data"][0]["requirements"][0]["value"]
+  end
+
   def test_errors_without_username
     assert_raises(RuntimeError) do
       PennSDK::Base.new nil, "invalid"
