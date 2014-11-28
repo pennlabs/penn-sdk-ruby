@@ -1,5 +1,7 @@
 # PennSDK: Rubygem for Penn OpenData
 
+[![Build Status](https://travis-ci.org/pennlabs/penn-sdk-ruby.svg)](https://travis-ci.org/pennlabs/penn-sdk-ruby)
+
 This is the Penn OpenData API implementation in Ruby.
 
 ## Installation
