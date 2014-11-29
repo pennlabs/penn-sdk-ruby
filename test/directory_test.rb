@@ -2,11 +2,9 @@ require "minitest/autorun"
 require "penn_sdk"
 
 describe PennSDK::Directory do
-  API_USERNAME = ENV["DIRECTORY_API_USERNAME"]
-  API_PASSWORD = ENV["DIRECTORY_API_PASSWORD"]
-
   before do
-    @directory = PennSDK::Directory.new API_USERNAME, API_PASSWORD
+    @directory = PennSDK::Directory.new(ENV["DIRECTORY_API_USERNAME"],
+                                        ENV["DIRECTORY_API_PASSWORD"])
   end
 
   describe "person details" do

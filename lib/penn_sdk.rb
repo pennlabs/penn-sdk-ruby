@@ -58,4 +58,15 @@ module PennSDK
       api("#{ENDPOINTS[:details]}/#{person}")["result_data"][0]
     end
   end
+
+  class Dining < Base
+    ENDPOINTS = {
+      :venues => '/dining/venues',
+      :menus  => '/dining/menus'
+    }
+
+    def venues
+      api(ENDPOINTS[:venues])["result_data"]["document"]["venue"]
+    end
+  end
 end
