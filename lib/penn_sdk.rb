@@ -68,5 +68,13 @@ module PennSDK
     def venues
       api(ENDPOINTS[:venues])["result_data"]["document"]["venue"]
     end
+
+    def daily_menu(venue)
+      api("#{ENDPOINTS[:menus]}/daily/#{venue}")["result_data"]["Document"]
+    end
+
+    def weekly_menu(venue)
+      api("#{ENDPOINTS[:menus]}/weekly/#{venue}")["result_data"]["Document"]
+    end
   end
 end
