@@ -11,6 +11,6 @@ class RegistrarTest < Minitest::Test
 
   def test_course
     result = @registrar.course "CIS", "110"
-    assert_equal "110", result["result_data"][0]["course_number"]
+    assert_equal "110", result[0]["course_number"]
   end
 end
