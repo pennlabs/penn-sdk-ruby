@@ -77,4 +77,29 @@ module PennSDK
       api("#{ENDPOINTS[:menus]}/weekly/#{venue}")["result_data"]["Document"]
     end
   end
+
+  class Transit < Base
+    ENDPOINTS = {
+      :stops   => '/transit/stopinventory',
+      :config  => '/transit/511/Configuration',
+      :predict => '/transit/511/Prediction',
+      :arrived => '/transit/511/Arrived'
+    }
+
+    def stops
+      api(ENDPOINTS[:stops])["result_data"]
+    end
+
+    def config
+      api(ENDPOINTS[:config])["result_data"]
+    end
+
+    def predict
+      api(ENDPOINTS[:predict])["result_data"]
+    end
+
+    def arrived
+      api(ENDPOINTS[:arrived])["result_data"]
+    end
+  end
 end
