@@ -20,7 +20,12 @@ module PennSDK
     end
 
     def api(endpoint, query={})
-      self.class.get(endpoint, query: query, headers: @headers)
+      result = self.class.get(endpoint, query: query, headers: @headers)
+      if not result["service_meta"]["error_text"].empty?
+        raise result["service_meta"]["error_text"]
+      else
+        return result
+      end
     end
   end
 
