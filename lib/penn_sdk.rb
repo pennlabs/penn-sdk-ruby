@@ -20,7 +20,12 @@ module PennSDK
     end
 
     def api(endpoint, query={})
-      self.class.get(endpoint, query: query, headers: @headers)
+      result = self.class.get(endpoint, query: query, headers: @headers)
+      if not result["service_meta"]["error_text"].empty?
+        raise result["service_meta"]["error_text"]
+      else
+        return result["result_data"]
+      end
     end
   end
 
@@ -51,11 +56,11 @@ module PennSDK
     }
 
     def search(params)
-      api(ENDPOINTS[:search], params)["result_data"]
+      api(ENDPOINTS[:search], params)
     end
 
     def details(person)
-      api("#{ENDPOINTS[:details]}/#{person}")["result_data"][0]
+      api("#{ENDPOINTS[:details]}/#{person}")[0]
     end
   end
 
@@ -66,15 +71,40 @@ module PennSDK
     }
 
     def venues
-      api(ENDPOINTS[:venues])["result_data"]["document"]["venue"]
+      api(ENDPOINTS[:venues])["document"]["venue"]
     end
 
     def daily_menu(venue)
-      api("#{ENDPOINTS[:menus]}/daily/#{venue}")["result_data"]["Document"]
+      api("#{ENDPOINTS[:menus]}/daily/#{venue}")["Document"]
     end
 
     def weekly_menu(venue)
-      api("#{ENDPOINTS[:menus]}/weekly/#{venue}")["result_data"]["Document"]
+      api("#{ENDPOINTS[:menus]}/weekly/#{venue}")["Document"]
+    end
+  end
+
+  class Transit < Base
+    ENDPOINTS = {
+      :stops   => '/transit/stopinventory',
+      :config  => '/transit/511/Configuration',
+      :predict => '/transit/511/Prediction',
+      :arrived => '/transit/511/Arrived'
+    }
+
+    def stops
+      api(ENDPOINTS[:stops])
+    end
+
+    def config
+      api(ENDPOINTS[:config])
+    end
+
+    def predict
+      api(ENDPOINTS[:predict])
+    end
+
+    def arrived
+      api(ENDPOINTS[:arrived])
     end
   end
 end
