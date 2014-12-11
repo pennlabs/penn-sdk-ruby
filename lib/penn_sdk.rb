@@ -107,4 +107,14 @@ module PennSDK
       api(ENDPOINTS[:arrived])
     end
   end
+
+  class News < Base
+    ENDPOINTS = {
+      :news => '/news_events_maps'
+    }
+
+    def search(description)
+      api(ENDPOINTS[:news], {:source => "news", :description => description})
+    end
+  end
 end
