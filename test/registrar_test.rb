@@ -19,7 +19,6 @@ class RegistrarTest < Minitest::Test
     assert_equal "LEC", result[0]["activity"]
     assert_equal "CIS", result[0]["course_department"]
     assert_equal "CIS 110001", result[0]["section_id"]
-    puts result
   end
 
   def test_search_params
